@@ -14,6 +14,8 @@
 	"libVersion": "2.0.9",
 	"appid": "wxaa86738a5e12cca5",
 	"projectname": "Sayofalt",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
