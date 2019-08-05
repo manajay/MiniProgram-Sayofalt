@@ -20,25 +20,25 @@
       {
         "pagePath": "pages/index/index",
         "iconPath": "images/home.png",
-        "selectedIconPath": "images/home_selected.png",
+        "selectedIconPath": "images/home_01.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/archives/archive",
-        "iconPath": "images/home.png",
-        "selectedIconPath": "images/home_selected.png",
+        "iconPath": "images/archive.png",
+        "selectedIconPath": "images/archive_01.png",
         "text": "归档"
       },
       {
         "pagePath": "pages/tags/tag",
-        "iconPath": "images/home.png",
-        "selectedIconPath": "images/home_selected.png",
+        "iconPath": "images/tags.png",
+        "selectedIconPath": "images/tags_01.png",
         "text": "标签"
       },
       {
         "pagePath": "pages/user/user",
         "iconPath": "images/home.png",
-        "selectedIconPath": "images/home_selected.png",
+        "selectedIconPath": "images/me.png",
         "text": "我的"
       }
     ]
