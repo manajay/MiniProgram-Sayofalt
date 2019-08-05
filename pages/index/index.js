@@ -1,13 +1,15 @@
 //index.js
 //获取应用实例
 const app = getApp()
+var Data = require('../../data.js');
 
 Page({
   data: {
     motto: 'Hello World!',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    post_list:[],
   },
   //事件处理函数
   bindViewTap: function() {
@@ -42,7 +44,11 @@ Page({
         }
       })
     }
+
+  // 获取首页
+    this.getPages();
   },
+
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
@@ -50,5 +56,21 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+
+  getPages: function() {
+    var that = this;
+
+    wx.request({
+      url: Data.getGhostHost() + '/ghost/api/v2/content/posts/?key=' + Data.getContentKey(),
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        that.setData({
+          post_list: res.data.posts,
+        });
+      }
+    })
+  },
 })

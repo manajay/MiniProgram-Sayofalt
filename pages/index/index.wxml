@@ -7,7 +7,18 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+
+  <!-- list -->
+    <view wx:for="{{post_list}}">
+      <van-card title="{{item.title}}" desc="{{item.excerpt}}" thumb="{{item.feature_image}}" bind:click="viewItem">
+        <text class="post-title">{{item.title}}</text>
+        <view>
+                <text class="post-excerpt">{{item.excerpt}}</text>
+        </view>
+
+        <view slot="footer">
+          <van-button data-id="{{item.id}}" size="small" type="primary" plain bind:click="viewItem">查看详情</van-button>
+        </view>
+      </van-card>
+    </view>
 </view>

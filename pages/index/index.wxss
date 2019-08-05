@@ -20,6 +20,14 @@
   margin-top: 200px;
 }
 
+.post-title {
+  color:black;
+}
+
+.post-excerpt {
+  color: blanchedalmond;
+}
+
 .container {
   color: #ED6C00
 }
