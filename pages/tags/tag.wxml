@@ -1,0 +1,4 @@
+<!--pages/tags/tag.wxml-->
+<view class='container'>
+  <text>标签🏷</text>
+</view>

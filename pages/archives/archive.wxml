@@ -1,0 +1,4 @@
+<!--pages/archives/archive.wxml-->
+<view class="container">
+  <text>归档</text>
+</view>

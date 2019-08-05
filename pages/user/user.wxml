@@ -1,0 +1,4 @@
+<!--pages/user/user.wxml-->
+<view class='container'>
+  <text>用户页面</text>
+</view>
