@@ -8,17 +8,15 @@
     </block>
   </view>
 
-  <!-- list -->
-    <view wx:for="{{post_list}}">
-      <van-card title="{{item.title}}" desc="{{item.excerpt}}" thumb="{{item.feature_image}}" bind:click="viewItem">
-        <text class="post-title">{{item.title}}</text>
-        <view>
-                <text class="post-excerpt">{{item.excerpt}}</text>
-        </view>
-
-        <view slot="footer">
-          <van-button data-id="{{item.id}}" size="small" type="primary" plain bind:click="viewItem">查看详情</van-button>
-        </view>
-      </van-card>
-    </view>
+    <!-- list -->
+  <view>
+      <mp-cells ext-class="post-cells">
+        <block wx:for="{{post_list}}" wx:key="id">
+          <mp-cell>
+            <view>{{item.title}}</view>
+            <view slot="foot">{{item.excerpt}}</view>
+          </mp-cell>
+        </block>
+      </mp-cells>
+  </view>
 </view>
