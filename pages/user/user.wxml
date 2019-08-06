@@ -1,4 +1,20 @@
 <!--pages/user/user.wxml-->
 <view class='container'>
-  <text>用户页面</text>
+<mp-cells ext-class="cells">
+    <view style="background-image: url('{{settings.cover_image}}'); background-size: cover; opacity:{{0.5}};">
+          <!-- <image src="{{settings.logo}}"></image> -->
+      <mp-cell>
+          <text class="title">{{settings.title}}</text>
+      </mp-cell>
+      <mp-cell>
+          <text class="description">{{settings.description}}</text>
+      </mp-cell>
+    </view>
+  <mp-cell>
+      <text>facebook: {{settings.facebook}}</text>
+  </mp-cell>
+  <mp-cell>
+      <text>twitter: {{settings.twitter}}</text>
+  </mp-cell>
+ </mp-cells>
 </view>

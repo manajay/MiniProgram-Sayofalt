@@ -1,4 +1,12 @@
 <!--pages/archives/archive.wxml-->
 <view class="container">
-  <text>归档</text>
+  <view class="archiveList">
+      <mp-cells ext-class="archive-cells">
+        <block wx:for="{{archive_list}}" wx:key="id">
+          <mp-cell catchtap='showDetail' data-id='{{item.id}}' data-index='{{index}}'>
+            <view>{{item.title}}</view>
+          </mp-cell>
+        </block>
+      </mp-cells>
+  </view>
 </view>

@@ -1,18 +1,21 @@
 // pages/user/user.js
+const app = getApp()
+var Data = require('../../data.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    settings:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getUserInfo();
   },
 
   /**
@@ -62,5 +65,24 @@ Page({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+
+  getUserInfo: function () {
+    wx.showLoading({
+      title: '加载中...',
+    });
+    var that = this;
+    wx.request({
+      url: Data.getGhostHost() + '/ghost/api/v2/content/settings/?key=' + Data.getContentKey(),
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        wx.hideLoading();
+        that.setData({
+          settings: res.data.settings,
+        });
+      }
+    })
+  },
 })

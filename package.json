@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "@tryghost/content-api": "^1.2.6",
     "weui-miniprogram": "^0.1.5"
   },
   "devDependencies": {},

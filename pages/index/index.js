@@ -73,4 +73,22 @@ Page({
       }
     })
   },
+  
+  showPostDetail(e){
+    let index = e.currentTarget.dataset.index;
+    var post = this.data.post_list[index];
+    var post_url = post.url
+    wx.navigateTo({
+      url: '../web/web?url=' + post_url,
+      success: function(res){
+        console.log(res);
+      },
+      fail: function(){
+
+      },
+      complete: function() {
+
+      }
+    })
+  },
 })

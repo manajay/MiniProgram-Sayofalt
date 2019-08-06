@@ -1,0 +1,6 @@
+<!--pages/web.wxml-->
+<view class="page-section page-section-gap">
+  <web-view src="{{url}}"></web-view>
+  <text> 个人账号不支持 webView</text>
+  <text>{{url}}</text>
+</view>

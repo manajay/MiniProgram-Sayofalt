@@ -1,4 +1,10 @@
 <!--pages/tags/tag.wxml-->
 <view class='container'>
-  <text>标签🏷</text>
+ <mp-cells ext-class="tag-cells">
+        <block wx:for="{{tag_list}}" wx:key="id">
+          <mp-cell data-id='{{item.id}}' data-index='{{index}}'>
+            <view>{{item.name}}</view>
+          </mp-cell>
+        </block>
+ </mp-cells>
 </view>

@@ -6,4 +6,13 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
+  color: #ED6C00;
 } 
+
+.title {
+  color: #ED6C00
+}
+
+.description {
+  color: #ED6C00
+}
