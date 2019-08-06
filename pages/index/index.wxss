@@ -1,23 +1,12 @@
 /**index.wxss**/
+.container {
+  color: #ED6C00
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
 }
 
 .post-title {
@@ -28,6 +17,6 @@
   color: blanchedalmond;
 }
 
-.container {
-  color: #ED6C00
+.postList {
+  margin-top: 0px;
 }

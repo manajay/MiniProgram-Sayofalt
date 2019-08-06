@@ -2,14 +2,12 @@
 <view class="container">
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+    <!-- <block wx:else>
+    </block> -->
   </view>
 
-    <!-- list -->
-  <view>
+  <!-- list -->
+  <view class="postList" wx:if="{{hasUserInfo}}">
       <mp-cells ext-class="post-cells">
         <block wx:for="{{post_list}}" wx:key="id">
           <mp-cell>
