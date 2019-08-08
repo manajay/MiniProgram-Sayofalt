@@ -1,6 +1,8 @@
 /**index.wxss**/
 .container {
-  color: #ED6C00
+  color: #ED6C00;
+  margin: 0rpx;
+  padding: 0rpx;
 }
 
 .userinfo {
@@ -18,5 +20,5 @@
 }
 
 .postList {
-  margin-top: 0px;
+  margin-top: 0rpx;
 }

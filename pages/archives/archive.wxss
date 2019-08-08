@@ -1,6 +1,8 @@
 .container {
-    color: #ED6C00;
-  /* display: flex;
+  color: #ED6C00;
+  margin: 0rpx;
+  padding: 0rpx;
+  display: flex;
   flex-direction: column;
-  justify-content: space-between; */
+  justify-content: space-between; 
 }

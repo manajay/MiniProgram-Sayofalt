@@ -1,5 +1,6 @@
 /* pages/web.wxss */
 .page-section-gap{
   box-sizing: border-box;
-  padding: 0 30rpx;
+  margin: 0rpx;
+  padding: 0rpx;
 }
