@@ -64,5 +64,15 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  webViewLoaded: function () {
+    console.log("web 页面加载完成");
+    var paras = document.getElementsByClassName('go-back');
+    for (i = 0; i < paras.length; i++) {
+      //删除元素 元素.parentNode.removeChild(元素);
+      if (paras[i] != null)
+        paras[i].parentNode.removeChild(paras[i]);
+    }
+  },
 })

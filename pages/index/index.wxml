@@ -13,7 +13,7 @@
         <mp-cell catchtap='showPostDetail' data-id='{{item.id}}' data-index='{{index}}'>
           <view class="post-title">{{item.title}}</view>
           <view class="img-container">
-            <image src='{{item.feature_image}}' class='img' />
+            <image wx:if="{{item.feature_image}}" src='{{item.feature_image}}' class='img' />
           </view>
           <view slot="foot">{{item.excerpt}}</view>
         </mp-cell>
