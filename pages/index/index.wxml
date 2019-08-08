@@ -26,4 +26,8 @@
     </mp-cells>
   </view>
 
+  <view class="weui-footer">
+            <view class="weui-footer__text">Copyright © 2018-2023 todayios</view>
+        </view>
+
 </view>

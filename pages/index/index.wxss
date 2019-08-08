@@ -10,10 +10,10 @@
   align-items: center;
 }
 
-.top-loading {
+.weui-loading__wrp {
   padding:16px;
   text-align:center;
-  background-color: red;
+  background-color: lightgray;
 }
 
 .userinfo {
