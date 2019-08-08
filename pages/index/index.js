@@ -7,6 +7,7 @@ Page({
   data: {
     motto: 'Hello World!',
     userInfo: {},
+    page:1,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     post_list:[],
@@ -46,7 +47,8 @@ Page({
     }
 
   // 获取首页
-    this.getPages();
+    let page = 1;
+    this.getPages(page);
   },
 
   getUserInfo: function(e) {
@@ -58,17 +60,26 @@ Page({
     })
   },
 
-  getPages: function() {
+  getPages: function(page) {
     var that = this;
 
     wx.request({
-      url: Data.getGhostHost() + '/ghost/api/v2/content/posts/?key=' + Data.getContentKey(),
+      url: Data.getGhostHost() + '/ghost/api/v2/content/posts/?key=' + Data.getContentKey() + '&limit=10&page=' + page,
       header: {
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        // 
+        var datas = that.data.post_list;
+        if (page == 1) {
+          datas = res.data.posts;
+        } else {
+          datas = datas.concat(res.data.posts);
+        }
+        let p = page;
         that.setData({
-          post_list: res.data.posts,
+          post_list: datas,
+          page:p
         });
       }
     })
@@ -91,4 +102,17 @@ Page({
       }
     })
   },
+  // 分享
+  onShareAppMessage(e) {
+
+  },
+
+  onPullDownRefresh(option) {
+    let page = 1;
+    this.getPages(page);
+  },
+  onReachBottom(option) {
+    let page = this.data.page + 1;
+    this.getPages(page);
+  }
 })

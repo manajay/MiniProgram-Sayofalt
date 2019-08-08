@@ -11,8 +11,10 @@
       <mp-cells ext-class="post-cells">
         <block wx:for="{{post_list}}" wx:key="id">
           <mp-cell catchtap='showPostDetail' data-id='{{item.id}}' data-index='{{index}}'>
-            <view>{{item.title}}</view>
-            <image src='{{item.feature_image}}' class='img'/>
+            <view class="post-title">{{item.title}}</view>
+            <view class="img-container">
+                        <image src='{{item.feature_image}}' class='img'/>
+            </view>
             <view slot="foot">{{item.excerpt}}</view>
           </mp-cell>
         </block>

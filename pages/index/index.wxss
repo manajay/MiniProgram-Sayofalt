@@ -3,16 +3,11 @@
   color: #ED6C00;
   margin: 0rpx;
   padding: 0rpx;
-}
-
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  
 }
 
 .post-title {
-  color:black;
+  color: #ED6C00;
 }
 
 .post-excerpt {
@@ -21,4 +16,21 @@
 
 .postList {
   margin-top: 0rpx;
+}
+
+.img-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding-top: 8rpx;
+}
+
+.img {
+  /* 侧轴 */
+  align-items: center;
+  width: 90%;
+  flex: 1;
+  display: flex;
+  /* 主轴 */
+  justify-content: center;
 }

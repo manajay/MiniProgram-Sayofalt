@@ -3,5 +3,6 @@
     "mp-dialog": "../../miniprogram_npm/weui-miniprogram/dialog/dialog",
     "mp-cell": "../../miniprogram_npm/weui-miniprogram/cell/cell",
     "mp-cells": "../../miniprogram_npm/weui-miniprogram/cells/cells"
-  }
+  },
+  "enablePullDownRefresh": true
 }

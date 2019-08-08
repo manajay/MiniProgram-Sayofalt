@@ -1,7 +1,8 @@
 .container {
-  color: #000000;
+  color: #ed6000;
   flex-direction: column;
   align-items: center;
   margin: 0rpx;
   padding: 0rpx;
+  display: block;
 }

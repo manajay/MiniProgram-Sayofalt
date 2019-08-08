@@ -6,3 +6,14 @@
   flex-direction: column;
   justify-content: space-between; 
 }
+
+.cell-title {
+  padding: 20rpx;
+  margin-left: 20rpx;
+}
+
+.cell-line {
+  background: lightgray;
+  height: 2rpx;
+  margin-left: 40rpx;
+}
