@@ -1,24 +1,24 @@
 <!--pages/user/user.wxml-->
-<view class='container'>
-<mp-cells ext-class="cells">
+<scroll-view class='container' upper-threshold="50" >
+  <mp-cells ext-class="cells">
     <view class="cell-bg" style="background-image: url('https://images.unsplash.com/photo-1490598000245-075175152d25?ixlib=rb-0.3.5&s=41009195eb3c61ea53d03e465d90a595&auto=format&fit=crop&w=1350&q=80'); background-size: cover; opacity:{{0.5}};">
-      
+
       <mp-cell>
-         <view class='site-container'>
-           <image class='site-logo' src="https://www.todayios.com/favicon.png"></image>
+        <view class='site-container'>
+          <image class='site-logo' src="https://www.todayios.com/favicon.png"></image>
           <text class="title">{{settings.title}}</text>
-         </view>
+        </view>
       </mp-cell>
 
       <mp-cell>
-          <text class="description">{{settings.description}}</text>
+        <text class="description">{{settings.description}}</text>
       </mp-cell>
     </view>
-  <mp-cell>
+    <mp-cell>
       <text>facebook: {{settings.facebook}}</text>
-  </mp-cell>
-  <mp-cell>
+    </mp-cell>
+    <mp-cell>
       <text>twitter: {{settings.twitter}}</text>
-  </mp-cell>
- </mp-cells>
-</view>
+    </mp-cell>
+  </mp-cells>
+</scroll-view>

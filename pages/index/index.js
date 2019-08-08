@@ -5,7 +5,7 @@ var Data = require('../../data.js');
 
 Page({
   data: {
-    motto: 'Hello World!',
+    loading:false,
     userInfo: {},
     page:1,
     hasUserInfo: false,
@@ -22,33 +22,44 @@ Page({
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
-        hasUserInfo: true
+        hasUserInfo: true,
+        loading:false
       })
     } else if (this.data.canIUse){
+      wx.hideTabBar();
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
+        if(res.userInfo){
+          wx.showTabBar();
+        }
         this.setData({
           userInfo: res.userInfo,
-          hasUserInfo: true
-        })
+          hasUserInfo: true,
+          loading: false,
+        });
+        let page = 1;
+        this.getPages(page);
       }
     } else {
+      wx.hideTabBar();
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
+          if (res.userInfo) {
+            wx.showTabBar();
+          }
           app.globalData.userInfo = res.userInfo
           this.setData({
             userInfo: res.userInfo,
-            hasUserInfo: true
-          })
+            hasUserInfo: true,
+            loading: false,
+          });
+          let page = 1;
+          this.getPages(page);
         }
       })
     }
-
-  // 获取首页
-    let page = 1;
-    this.getPages(page);
   },
 
   getUserInfo: function(e) {
@@ -61,8 +72,14 @@ Page({
   },
 
   getPages: function(page) {
-    var that = this;
+    
+    if(page == 1 ){
+      this.setData({
+        loading: true,
+      });
+    }
 
+    var that = this;
     wx.request({
       url: Data.getGhostHost() + '/ghost/api/v2/content/posts/?key=' + Data.getContentKey() + '&limit=10&page=' + page,
       header: {
@@ -79,7 +96,8 @@ Page({
         let p = page;
         that.setData({
           post_list: datas,
-          page:p
+          page:p,
+          loading:false,
         });
       }
     })

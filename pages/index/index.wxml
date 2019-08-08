@@ -1,9 +1,14 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <!-- <block wx:else>
-    </block> -->
+  <view class="weui-loading__wrp" wx:if="{{loading}}">
+    <view class="loading wx_dot_loading"></view>
+  </view>
+  <view class="userinfo" wx:if="{{!hasUserInfo && canIUse}}">
+    <image class="user-info-logo" src="../../images/me.png"></image>
+    <view class="weui-loading__wrp">
+          <view class="weui-loading"></view>
+      </view>
+    <button class="user-info-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
   </view>
 
   <!-- list -->
@@ -13,11 +18,12 @@
         <mp-cell catchtap='showPostDetail' data-id='{{item.id}}' data-index='{{index}}'>
           <view class="post-title">{{item.title}}</view>
           <view class="img-container">
-            <image wx:if="{{item.feature_image}}" src='{{item.feature_image}}' class='img' />
+            <image wx:if="{{item.feature_image}}" mode="aspectFill" src='{{item.feature_image}}' class='img' />
           </view>
           <view slot="foot">{{item.excerpt}}</view>
         </mp-cell>
       </block>
     </mp-cells>
   </view>
+
 </view>
