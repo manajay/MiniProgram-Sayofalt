@@ -3,7 +3,14 @@
   color: #ED6C00;
   margin: 0rpx;
   padding: 0rpx;
-  
+}
+
+.cell-list {
+  margin:0rpx;
+  padding: 0rpx;
+  background-image: url("https://images.unsplash.com/photo-1565236055644-8c5c24ee6c9c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80");
+  background-size:100% 100%;
+  background-repeat:no-repeat;
 }
 
 .post-title {
@@ -12,10 +19,6 @@
 
 .post-excerpt {
   color: blanchedalmond;
-}
-
-.postList {
-  margin-top: 0rpx;
 }
 
 .img-container {

@@ -7,8 +7,8 @@
   </view>
 
   <!-- list -->
-  <view class="postList" wx:if="{{hasUserInfo}}">
-      <mp-cells ext-class="post-cells">
+  <view class="cell-list" wx:if="{{hasUserInfo}}">
+      <mp-cells>
         <block wx:for="{{post_list}}" wx:key="id">
           <mp-cell catchtap='showPostDetail' data-id='{{item.id}}' data-index='{{index}}'>
             <view class="post-title">{{item.title}}</view>
