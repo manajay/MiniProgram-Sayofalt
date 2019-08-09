@@ -99,6 +99,7 @@ Page({
           page:p,
           loading:false,
         });
+        wx.stopPullDownRefresh();
       }
     })
   },
