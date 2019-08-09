@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-<!-- 加载 -->
+  <!-- 加载 -->
   <view class="weui-loading__wrp" wx:if="{{loading}}">
     <view class="loading wx_dot_loading"></view>
   </view>
@@ -8,10 +8,22 @@
   <view class="userinfo" wx:if="{{!hasUserInfo && canIUse}}">
     <image class="user-info-logo" src="../../images/me.png"></image>
     <view class="weui-loading__wrp">
-          <view class="weui-loading"></view>
-      </view>
+      <view class="weui-loading"></view>
+    </view>
     <button class="user-info-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
   </view>
+
+  <swiper class="recommend-swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" indicator-active-color="#ED6C00" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{recommend_list}}" wx:key="id">
+      <swiper-item class='swiper-i' item-id="{{item.id}}">
+        <!-- <view class="post-title">{{item.title}}</view> -->
+        <!-- <view> -->
+          <image wx:if="{{item.feature_image}}" mode="aspectFill" src='{{item.feature_image}}' class='slide-img' />
+        <!-- </view> -->
+      </swiper-item>
+
+    </block>
+  </swiper>
 
   <!-- list -->
   <view class="cell-list" wx:if="{{hasUserInfo}}">
@@ -29,7 +41,7 @@
   </view>
 
   <view class="weui-footer">
-            <view class="weui-footer__text">Copyright © 2018-2023 todayios</view>
-        </view>
+    <view class="weui-footer__text">Copyright © 2018-2023 todayios</view>
+  </view>
 
 </view>

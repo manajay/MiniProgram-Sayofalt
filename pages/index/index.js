@@ -5,15 +5,20 @@ var Data = require('../../data.js');
 
 Page({
   data: {
-    loading:false,
+    loading: false,
     userInfo: {},
-    page:1,
+    page: 1,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    post_list:[],
+    post_list: [],
+    indicatorDots: true,
+    autoplay: true,
+    interval: 5000,
+    duration: 1000,
+    recommend_list: []
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
@@ -23,14 +28,14 @@ Page({
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true,
-        loading:false
+        loading: false
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       wx.hideTabBar();
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
-        if(res.userInfo){
+        if (res.userInfo) {
           wx.showTabBar();
         }
         this.setData({
@@ -62,7 +67,7 @@ Page({
     }
   },
 
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -71,9 +76,9 @@ Page({
     })
   },
 
-  getPages: function(page) {
-    
-    if(page == 1 ){
+  getPages: function (page) {
+
+    if (page == 1) {
       this.setData({
         loading: true,
       });
@@ -88,35 +93,42 @@ Page({
       success(res) {
         // 
         var datas = that.data.post_list;
+        var recommends = [];
         if (page == 1) {
           datas = res.data.posts;
+          let count = datas.length > 5 ? 5 : datas.length;
+          recommends = datas.splice(0, count);
         } else {
           datas = datas.concat(res.data.posts);
         }
+
+        console.log("推荐数量: " + recommends.length);
+
         let p = page;
         that.setData({
           post_list: datas,
-          page:p,
-          loading:false,
+          page: p,
+          loading: false,
+          recommend_list: recommends,
         });
         wx.stopPullDownRefresh();
       }
     })
   },
-  
-  showPostDetail(e){
+
+  showPostDetail(e) {
     let index = e.currentTarget.dataset.index;
     var post = this.data.post_list[index];
     var post_url = post.url
     wx.navigateTo({
       url: '../web/web?url=' + post_url,
-      success: function(res){
+      success: function (res) {
         console.log(res);
       },
-      fail: function(){
+      fail: function () {
 
       },
-      complete: function() {
+      complete: function () {
 
       }
     })
