@@ -1,0 +1,38 @@
+<!--pages/comment/comment.wxml-->
+<view class="container">
+
+  <view class="cells">
+    <view class="cells-header">一组评论 Header</view>
+
+    <block wx:for="{{comments}}" wx:key="commentId">
+
+      <view class="cell" catchtap='showPostDetail' data-id='{{item.commentId}}' data-index='{{index}}'>
+        <view wx:if="{{item.type === 1}}" class="cell-comment">
+          <view class="cell_hd">
+            <image class="comment-user_avatar" src="https://static001.geekbang.org/account/avatar/00/10/49/ba/23c9246a.jpg" mode="aspectFill"></image>
+            <view class="cell_hd-name-time">
+              <view class="comment-user_name"> {{item.userName}}</view>
+              <view class="comment-time"> {{item.commentTime}} </view>
+            </view>
+          </view>
+          <!-- 评论 -->
+          <view class="comment-content">{{item.comment}}</view>
+          <!-- 分割线 -->
+          <view class="cell-bottom-line"></view>
+        </view>
+
+        <!-- 通过 -->
+        <view wx:if="{{item.type === 0}}" class="cell-approve">
+          <icon type="success"></icon>
+          <view class="comment-u"> {{item.userName}} 通过了审批  </view>
+          <view class="comment-t"> {{item.commentTime}} </view>
+        </view>
+
+
+      </view>
+    </block>
+
+    <view class="cells-footere">Footer</view>
+  </view>
+
+</view>

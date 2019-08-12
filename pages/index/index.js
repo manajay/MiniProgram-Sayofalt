@@ -112,6 +112,9 @@ Page({
           recommend_list: recommends,
         });
         wx.stopPullDownRefresh();
+      },
+      fail(res) {
+        wx.stopPullDownRefresh(); 
       }
     })
   },
@@ -135,7 +138,31 @@ Page({
   },
   // 分享
   onShareAppMessage(e) {
-
+    if (e.from === "button") {
+      console.log("未实现");
+      wx.showToast({
+        title: '分享未实现',
+        icon: 'warn',
+      })
+    } else {
+      return {
+        title: 'JAY 站',
+        path: '/pages/index/index',
+        imageUrl: '/images/tags_01.png',
+        success:function (res) {
+          wx.showToast({
+            title: '分享成功',
+            icon: 'success',
+          })
+        },
+        fail: function(res) {
+          wx.showToast({
+            title: '分享失败',
+            icon: 'fail',
+          })
+        }
+      }
+    }
   },
 
   onPullDownRefresh(option) {
