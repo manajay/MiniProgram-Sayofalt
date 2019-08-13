@@ -1,6 +1,6 @@
 /* pages/comment/comment.wxss */
 Page {
-  background-color: lightgray;
+  background-color: #ffffff;
 }
 
 .container {
@@ -22,7 +22,7 @@ Page {
   padding: 0rpx;
   display: flex;
   flex-direction: column;
-  background-color: rgb(223, 222, 222);
+  background-color:rgba(255, 255, 255, 0);
 }
 
 .cell-comment {
@@ -44,9 +44,9 @@ Page {
 
 .comment-user_avatar {
   padding-left: 0rpx;
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 30rpx;
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 32rpx;
 }
 
 .cell_hd-name-time {
@@ -56,23 +56,26 @@ Page {
 }
 
 .comment-user_name {
-  color: black;
+  color: #4a4a4a;
   padding-left: 20rpx;
-  font-size: 35rpx;
+  font-size: 28rpx;
+  font-family: "PingFangSC";
 }
 
 .comment-time {
-  color: orange;
+  color: #a6a6a6;
   padding-left: 20rpx;
   font-size: 24rpx;
+  font-family: "PingFangSC";
 }
 
 .comment-content {
-  color: green;
+  color: #4a4a4a;
   margin: 20rpx;
   margin-top: 0rpx;
   padding-left: 100rpx;
-  font-size: 36rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC;
 }
 
 .cell-bottom-line {
@@ -91,11 +94,18 @@ Page {
 }
 
 .comment-u {
-  color: gray;
+  color: #959595;
   padding-left: 20rpx;
+  font-size: 24rpx;
 }
 
 .comment-t {
-  color: gray;
+  color: #a6a6a6;
   padding-left: 20rpx;
+  font-size: 24rpx;
+}
+
+.approved-img {
+  width: 32rpx;
+  height: 32rpx;
 }

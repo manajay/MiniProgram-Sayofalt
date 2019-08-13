@@ -15,7 +15,7 @@ Page({
       },
       {
         commentId: 2,
-        comment: "天气真是非常好, 一起出去郊游",
+        comment: "那天我看见一场飓风，它像棉被一样被一只巨手牢牢地捂住天空的呼吸，直到疲惫得动弹不得。天色暗得仿佛会一直熄灭下去。我在等待着一场迟迟不来的雨，将这个世界的喧嚣与浮躁冲刷殆尽。",
         userId: "xxxxx",
         userName: "张三",
         commentTime: "2019-09-12 10:32",
@@ -23,7 +23,7 @@ Page({
       },
       {
         commentId: 3,
-        comment: "天气真是非常好, 一起出去郊游",
+        comment: "香港的饭馆里大红大绿大金大银，语声喧哗，北人皆以为俗气，其实你读唐诗，正是这种世俗的热闹，铺张而有元气。",
         userId: "xxxxx",
         userName: "张三",
         commentTime: "2019-09-12 10:32",
@@ -37,7 +37,22 @@ Page({
         commentTime: "2019-09-12 10:32",
         type: 1
       },
-      
+      {
+        commentId: 5,
+        comment: "我喜欢孔子的入世，入得很清晰，有智慧，含幽默，实实在在不标榜。道家则总有点标榜的味道，从古到今，不断地有人用道家来标榜自己，因为实在是太方便了。",
+        userId: "xxxxx",
+        userName: "张三",
+        commentTime: "2019-09-12 10:32",
+        type: 2
+      },
+      {
+        commentId: 6,
+        comment: "天气真是非常好, 一起出去郊游",
+        userId: "xxxxx",
+        userName: "张三",
+        commentTime: "2019-09-12 10:32",
+        type: 1
+      },
     ],
   },
 

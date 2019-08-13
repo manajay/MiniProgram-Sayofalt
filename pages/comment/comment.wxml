@@ -2,12 +2,12 @@
 <view class="container">
 
   <view class="cells">
-    <view class="cells-header">一组评论 Header</view>
+    <!-- <view class="cells-header">一组评论 Header</view> -->
 
     <block wx:for="{{comments}}" wx:key="commentId">
 
       <view class="cell" catchtap='showPostDetail' data-id='{{item.commentId}}' data-index='{{index}}'>
-        <view wx:if="{{item.type === 1}}" class="cell-comment">
+        <view wx:if="{{item.type === 0}}" class="cell-comment">
           <view class="cell_hd">
             <image class="comment-user_avatar" src="https://static001.geekbang.org/account/avatar/00/10/49/ba/23c9246a.jpg" mode="aspectFill"></image>
             <view class="cell_hd-name-time">
@@ -22,9 +22,14 @@
         </view>
 
         <!-- 通过 -->
-        <view wx:if="{{item.type === 0}}" class="cell-approve">
-          <icon type="success"></icon>
-          <view class="comment-u"> {{item.userName}} 通过了审批  </view>
+        <view wx:else class="cell-approve">
+          <image wx:if="{{item.type === 1}}" class="approved-img" src="../../images/badge-approved@3x.png" mode="aspectFill"></image>
+
+          <image wx:if="{{item.type === 2}}" class="approved-img" src="../../images/dot@3x.png" mode="aspectFill"></image>
+
+          <view  wx:if="{{item.type === 1}}" class="comment-u"> {{item.userName}} 通过了审批  </view>
+          <view wx:if="{{item.type === 2}}" class="comment-u"> {{item.userName}} 修改了备注信息  </view>
+
           <view class="comment-t"> {{item.commentTime}} </view>
         </view>
 
@@ -32,7 +37,7 @@
       </view>
     </block>
 
-    <view class="cells-footere">Footer</view>
+    <!-- <view class="cells-footere">Footer</view> -->
   </view>
 
 </view>
