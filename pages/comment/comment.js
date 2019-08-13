@@ -153,5 +153,18 @@ Page({
    */
   onShareAppMessage: function() {
 
-  }
+  },
+
+  queryCommentList:function(e) {
+    wx.request({
+      url: 'https://alphalawyer.cn/appro/api/v1/feeds?approveId=' + '344134' + '&approveType=' + '2004102' + '&orderBy=id&orderType=desc'
+        + '&pageIndex=1&pageSize=10',
+      success(res) {
+        console.log("成功的结果: " + res);
+      },
+      fail(f) {
+        console.log("失败的结果: "+ f);
+      },
+    })
+  },
 })
