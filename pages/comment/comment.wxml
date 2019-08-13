@@ -7,7 +7,8 @@
     <block wx:for="{{comments}}" wx:key="approveId">
 
       <view class="cell" catchtap='showPostDetail' data-id='{{item.approveId}}' data-index='{{index}}'>
-        <view wx:if="{{item.approveType === 0}}" class="cell-comment">
+        <!-- 评论 feedType 1 -->
+        <view wx:if="{{item.feedType === 1}}" class="cell-comment">
           <view class="cell_hd">
             <image class="comment-user_avatar" src="{{item.createUserPic}}" mode="aspectFill"></image>
             <view class="cell_hd-name-time">
@@ -23,13 +24,13 @@
 
         <!-- 通过 -->
         <view wx:else class="cell-approve">
-          <image wx:if="{{item.approveType === 1}}" class="approved-img" src="../../images/badge-approved@3x.png" mode="aspectFill"></image>
+        
+        <!-- 审批 feedType 2 -->
+          <image wx:if="{{item.feedType === 2}}" class="approved-img" src="../../images/badge-approved@3x.png" mode="aspectFill"></image>
 
-          <image wx:if="{{item.approveType === 2}}" class="approved-img" src="../../images/dot@3x.png" mode="aspectFill"></image>
+          <image wx:if="{{item.feedType === 2}}" class="approved-img" src="../../images/dot@3x.png" mode="aspectFill"></image>
 
-          <view  wx:if="{{item.approveType === 1}}" class="comment-u"> {{item.createUserName}} 通过了审批  </view>
-          <view wx:if="{{item.approveType === 2}}" class="comment-u"> {{item.createUserName}} 修改了备注信息  </view>
-
+          <view class="comment-u"> {{item.content}} </view>
           <view class="comment-t"> {{item.gmtCreate}} </view>
         </view>
 
