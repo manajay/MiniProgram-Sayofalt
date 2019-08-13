@@ -8,20 +8,24 @@ Page({
    */
   data: {
     comments: [],
+    pageIndex: 1,
+    loading: false,
+    pullingUp: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     // 处理数据
-    this.proccessData();
+    this.loadNewiesPage();
   },
 
   proccessData() {
+
     let rawData = [{
       action: null,
-      approveId: "13708",
+      approveId: "13704",
       approveType: 1,
       content: "qqqq",
       createUserId: "A325ACCB789711E998137CD30AEB153E",
@@ -60,7 +64,7 @@ Page({
       modifyUserId: "C3095D1F789711E998137CD30AEB153E"
     }, {
       action: null,
-      approveId: "13708",
+      approveId: "13718",
       approveType: 2,
       content: "你们的",
       createUserId: "A325ACCB789711E998137CD30AEB153E",
@@ -73,7 +77,7 @@ Page({
       modifyUserId: "A325ACCB789711E998137CD30AEB153E"
     }, {
       action: "PASS",
-      approveId: "13708",
+      approveId: "13308",
       approveType: 0,
       content: "姚俊倩 通过了审批",
       createUserId: "A325ACCB789711E998137CD30AEB153E",
@@ -86,7 +90,7 @@ Page({
       modifyUserId: "A325ACCB789711E998137CD30AEB153E"
     }, {
       action: null,
-      approveId: "13708",
+      approveId: "13608",
       approveType: 2,
       content: "你们，\n",
       createUserId: "A325ACCB789711E998137CD30AEB153E",
@@ -99,7 +103,7 @@ Page({
       modifyUserId: "A325ACCB789711E998137CD30AEB153E"
     }, {
       action: "CREATE",
-      approveId: "13708",
+      approveId: "13748",
       approveType: 2,
       content: "吴彦祖 发起了审批",
       createUserId: "A325ACCB789711E998137CD30AEB153E",
@@ -110,6 +114,19 @@ Page({
       gmtModified: 1563538816000,
       id: 85557,
       modifyUserId: "A325ACCB789711E998137CD30AEB153E"
+    }, {
+      action: "RESTART",
+      approveId: "309522",
+      approveType: 2,
+      content: "段连洁 重新发起了审批",
+      createUserId: "FA52E663303711E894A4446A2ED9E475",
+      createUserName: "段连洁",
+      createUserPic: "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epmFf2AaupZwCrRESwNgb6EqKibX13E9Z7icTqV4uEjicnsbqhhgPicD0qjQwoNib3icwPiauic9TFwwiakNrA/132",
+      feedType: 1,
+      gmtCreate: 1560486210000,
+      gmtModified: 1560486210000,
+      id: 1252571,
+      modifyUserId: "FA52E663303711E894A4446A2ED9E475",
     }];
 
     var commentList = rawData.map(
@@ -122,7 +139,7 @@ Page({
           createUserName: item.createUserName,
           createUserPic: item.createUserPic,
           feedType: item.feedType,
-          // 
+          id: Math.random(),
           time: time.formatTimeMDHM(new Date(item.gmtCreate))
         }
       }
@@ -130,71 +147,116 @@ Page({
 
     console.log(commentList);
 
-    this.setData({
-      comments: commentList
-    });
-
+    return commentList;
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
-
+  onPullDownRefresh: function () {
+    this.loadNewiesPage();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
-
+  onReachBottom: function () {
+    console.log("底部加载");
+    this.loadNextPage();
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   },
 
-  queryCommentList:function(e) {
+  queryCommentList: function (e) {
     wx.request({
-      url: 'https://alphalawyer.cn/appro/api/v1/feeds?approveId=' + '344134' + '&approveType=' + '2004102' + '&orderBy=id&orderType=desc'
-        + '&pageIndex=1&pageSize=10',
+      url: 'https://alphalawyer.cn/appro/api/v1/feeds?approveId=' + '344134' + '&approveType=' + '2004102' + '&orderBy=id&orderType=desc' +
+        '&pageIndex=1&pageSize=10',
       success(res) {
         console.log("成功的结果: " + res);
       },
       fail(f) {
-        console.log("失败的结果: "+ f);
+        console.log("失败的结果: " + f);
       },
     })
+  },
+
+  loadNewiesPage() {
+    this.setData({
+      loading: true
+    });
+
+    var that = this;
+    var d = this.proccessData();
+    setTimeout(function () {
+      // 数据
+      that.setData({
+        pageIndex: 1,
+        comments: d,
+        loading: false
+      });
+      wx.stopPullDownRefresh();
+    },
+      300);
+
+
+  },
+
+  loadNextPage() {
+    this.setData({
+      pullingUp: true
+    });
+
+    var that = this;
+    var pageIndex = that.data.pageIndex;
+
+    var d = that.proccessData();
+    var old = that.data.comments;
+    console.log("old 总数: " + old.length);
+    d = old.concat(d);
+
+    console.log("new 总数: " + d.length);
+
+    setTimeout(function () {
+      // 数据
+      that.setData({
+        pageIndex: pageIndex + 1,
+        comments: d,
+        pullingUp: false
+      });
+    },
+      300);
   },
 })

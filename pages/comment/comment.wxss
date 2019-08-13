@@ -3,6 +3,11 @@ Page {
   background-color: #ffffff;
 }
 
+.weui-loading__wrp {
+  padding:16px;
+  text-align:center;
+}
+
 .container {
   padding: 0rpx;
 }

@@ -2,8 +2,12 @@
 
 <view class="container">
 
+  <view class="weui-loading__wrp" wx:if="{{loading}}">
+    <view class="loading wx_dot_loading"></view>
+  </view>
+
   <view class="cells">
-    <block wx:for="{{comments}}" wx:key="approveId">
+    <block wx:for="{{comments}}" wx:key="id">
 
       <view class="cell" catchtap='showPostDetail' data-id='{{item.approveId}}' data-index='{{index}}'>
         <!-- 评论 feedType 1 -->
@@ -27,9 +31,7 @@
           <!-- 审批 feedType 2 -->
           <image wx:if="{{item.feedType === 2 && item.action === 'PASS'}}" class="approved-icon" src="../../images/badge-approved@3x.png" mode="aspectFill"></image>
           <!-- REJECT -->
-          <icon 
-          wx:elif="{{item.feedType === 2 && item.action === 'REJECT' }}"
-          class="approved-icon iconfont icon-bohui" style="color: red; margin-top: -30rpx" ></icon>          
+          <icon wx:elif="{{item.feedType === 2 && item.action === 'REJECT' }}" class="approved-icon iconfont icon-bohui" style="color: red; margin-top: -30rpx"></icon>
 
           <!-- RESTART - REVOKE - CREATE  -->
           <image wx:else class="approved-icon" src="../../images/dot@3x.png" mode="aspectFill"></image>
@@ -41,6 +43,10 @@
 
       </view>
     </block>
+  </view>
+
+  <view class="weui-loading__wrp" wx:if="{{pullingUp}}">
+    <view class="loading wx_dot_loading"></view>
   </view>
 
 </view>
