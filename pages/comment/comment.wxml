@@ -4,33 +4,33 @@
   <view class="cells">
     <!-- <view class="cells-header">一组评论 Header</view> -->
 
-    <block wx:for="{{comments}}" wx:key="commentId">
+    <block wx:for="{{comments}}" wx:key="approveId">
 
-      <view class="cell" catchtap='showPostDetail' data-id='{{item.commentId}}' data-index='{{index}}'>
-        <view wx:if="{{item.type === 0}}" class="cell-comment">
+      <view class="cell" catchtap='showPostDetail' data-id='{{item.approveId}}' data-index='{{index}}'>
+        <view wx:if="{{item.approveType === 0}}" class="cell-comment">
           <view class="cell_hd">
-            <image class="comment-user_avatar" src="https://static001.geekbang.org/account/avatar/00/10/49/ba/23c9246a.jpg" mode="aspectFill"></image>
+            <image class="comment-user_avatar" src="{{item.createUserPic}}" mode="aspectFill"></image>
             <view class="cell_hd-name-time">
-              <view class="comment-user_name"> {{item.userName}}</view>
-              <view class="comment-time"> {{item.commentTime}} </view>
+              <view class="comment-user_name"> {{item.createUserName}}</view>
+              <view class="comment-time"> {{item.gmtCreate}} </view>
             </view>
           </view>
           <!-- 评论 -->
-          <view class="comment-content">{{item.comment}}</view>
+          <view class="comment-content">{{item.content}}</view>
           <!-- 分割线 -->
           <view class="cell-bottom-line"></view>
         </view>
 
         <!-- 通过 -->
         <view wx:else class="cell-approve">
-          <image wx:if="{{item.type === 1}}" class="approved-img" src="../../images/badge-approved@3x.png" mode="aspectFill"></image>
+          <image wx:if="{{item.approveType === 1}}" class="approved-img" src="../../images/badge-approved@3x.png" mode="aspectFill"></image>
 
-          <image wx:if="{{item.type === 2}}" class="approved-img" src="../../images/dot@3x.png" mode="aspectFill"></image>
+          <image wx:if="{{item.approveType === 2}}" class="approved-img" src="../../images/dot@3x.png" mode="aspectFill"></image>
 
-          <view  wx:if="{{item.type === 1}}" class="comment-u"> {{item.userName}} 通过了审批  </view>
-          <view wx:if="{{item.type === 2}}" class="comment-u"> {{item.userName}} 修改了备注信息  </view>
+          <view  wx:if="{{item.approveType === 1}}" class="comment-u"> {{item.createUserName}} 通过了审批  </view>
+          <view wx:if="{{item.approveType === 2}}" class="comment-u"> {{item.createUserName}} 修改了备注信息  </view>
 
-          <view class="comment-t"> {{item.commentTime}} </view>
+          <view class="comment-t"> {{item.gmtCreate}} </view>
         </view>
 
 
