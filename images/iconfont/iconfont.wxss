@@ -1,0 +1,130 @@
+@font-face {
+  font-family: 'iconfont';  /* project id 189937 */
+  src: url('//at.alicdn.com/t/font_189937_nwrte9h3v4s.eot');
+  src: url('//at.alicdn.com/t/font_189937_nwrte9h3v4s.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_189937_nwrte9h3v4s.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_189937_nwrte9h3v4s.woff') format('woff'),
+  url('//at.alicdn.com/t/font_189937_nwrte9h3v4s.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_189937_nwrte9h3v4s.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-like:before {
+  content: "\e8d3";
+}
+
+.icon-location:before {
+  content: "\e8d4";
+}
+
+.icon-bubble:before {
+  content: "\e8d6";
+}
+
+.icon-camera:before {
+  content: "\e8d9";
+}
+
+.icon-cloud:before {
+  content: "\e8dc";
+}
+
+.icon-heart:before {
+  content: "\e8e4";
+}
+
+.icon-star:before {
+  content: "\e8e9";
+}
+
+.icon-tag:before {
+  content: "\e8eb";
+}
+
+.icon-mail:before {
+  content: "\e8ee";
+}
+
+.icon-music:before {
+  content: "\e8f0";
+}
+
+.icon-paperplane:before {
+  content: "\e8f3";
+}
+
+.icon-search:before {
+  content: "\e8f8";
+}
+
+.icon-settings:before {
+  content: "\e8f9";
+}
+
+.icon-tshirt:before {
+  content: "\e8fe";
+}
+
+.icon-exit:before {
+  content: "\e904";
+}
+
+.icon-time:before {
+  content: "\e90a";
+}
+
+.icon-bank:before {
+  content: "\e90b";
+}
+
+.icon-user2:before {
+  content: "\e913";
+}
+
+.icon-more:before {
+  content: "\e93d";
+}
+
+.icon-archive:before {
+  content: "\e681";
+}
+
+.icon-affirm:before {
+  content: "\e95d";
+}
+
+.icon-dog:before {
+  content: "\e976";
+}
+
+.icon-bohui:before {
+  content: "\e6a0";
+}
+
+.icon-tags:before {
+  content: "\e87c";
+}
+
+.icon-compass:before {
+  content: "\e77d";
+}
+
+.icon-earth:before {
+  content: "\e781";
+}
+
+.icon-piechart:before {
+  content: "\e78e";
+}
+
+.icon-bohui1:before {
+  content: "\e87b";
+}
+

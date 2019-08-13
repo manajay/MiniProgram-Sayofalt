@@ -1,9 +1,8 @@
 <!--pages/comment/comment.wxml-->
+
 <view class="container">
 
   <view class="cells">
-    <!-- <view class="cells-header">一组评论 Header</view> -->
-
     <block wx:for="{{comments}}" wx:key="approveId">
 
       <view class="cell" catchtap='showPostDetail' data-id='{{item.approveId}}' data-index='{{index}}'>
@@ -13,32 +12,35 @@
             <image class="comment-user_avatar" src="{{item.createUserPic}}" mode="aspectFill"></image>
             <view class="cell_hd-name-time">
               <view class="comment-user_name"> {{item.createUserName}}</view>
-              <view class="comment-time"> {{item.gmtCreate}} </view>
+              <view class="comment-time"> {{item.time}} </view>
             </view>
           </view>
           <!-- 评论 -->
           <view class="comment-content">{{item.content}}</view>
-          <!-- 分割线 -->
+          <!-- 分割线 阴影-->
           <view class="cell-bottom-line"></view>
         </view>
 
         <!-- 通过 -->
         <view wx:else class="cell-approve">
-        
-        <!-- 审批 feedType 2 -->
-          <image wx:if="{{item.feedType === 2}}" class="approved-img" src="../../images/badge-approved@3x.png" mode="aspectFill"></image>
 
-          <image wx:if="{{item.feedType === 2}}" class="approved-img" src="../../images/dot@3x.png" mode="aspectFill"></image>
+          <!-- 审批 feedType 2 -->
+          <image wx:if="{{item.feedType === 2 && item.action === 'PASS'}}" class="approved-icon" src="../../images/badge-approved@3x.png" mode="aspectFill"></image>
+          <!-- REJECT -->
+          <icon 
+          wx:elif="{{item.feedType === 2 && item.action === 'REJECT' }}"
+          class="approved-icon iconfont icon-bohui" style="color: red; margin-top: -30rpx" ></icon>          
+
+          <!-- RESTART - REVOKE - CREATE  -->
+          <image wx:else class="approved-icon" src="../../images/dot@3x.png" mode="aspectFill"></image>
 
           <view class="comment-u"> {{item.content}} </view>
-          <view class="comment-t"> {{item.gmtCreate}} </view>
+          <view class="comment-t"> {{item.time}} </view>
         </view>
 
 
       </view>
     </block>
-
-    <!-- <view class="cells-footere">Footer</view> -->
   </view>
 
 </view>

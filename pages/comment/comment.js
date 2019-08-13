@@ -1,11 +1,25 @@
 // pages/comment/comment.js
+var time = require('../../utils/util.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    comments: [{
+    comments: [],
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+    // 处理数据
+    this.proccessData();
+  },
+
+  proccessData() {
+    let rawData = [{
       action: null,
       approveId: "13708",
       approveType: 1,
@@ -19,14 +33,14 @@ Page({
       id: 85568,
       modifyUserId: "A325ACCB789711E998137CD30AEB153E"
     }, {
-      action: null,
+      action: "REJECT",
       approveId: "13708",
       approveType: 0,
-      content: "ffffff",
-      createUserId: "C3095D1F789711E998137CD30AEB153E",
+      content: "师倩 驳回了审批",
+      createUserId: "273D40BD17A811E9B16C6C92BF4645AC",
       createUserName: "张帆",
-      createUserPic: "https://testres.alphalawyer.cn/paralegalInfo/5eff20f7-8bab-4a05-a8a8-f7b47b7474a7",
-      feedType: 1,
+      createUserPic: "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJEYTVhaEcHUlob4n5nWpG9ibULtFrXGb2fdlmFDKibBqWSD5fibWiadsAKotgIvRYmtSPPhvhEH9qLUw/132",
+      feedType: 2,
       gmtCreate: 1563538987000,
       gmtModified: 1563538987000,
       id: 85566,
@@ -35,7 +49,7 @@ Page({
       action: null,
       approveId: "2004102",
       approveType: 0,
-        content: "我喜欢孔子的入世，入得很清晰，有智慧，含幽默，实实在在不标榜。道家则总有点标榜的味道，从古到今，不断地有人用道家来标榜自己，因为实在是太方便了。",
+      content: "我喜欢孔子的入世，入得很清晰，有智慧，含幽默，实实在在不标榜。道家则总有点标榜的味道，从古到今，不断地有人用道家来标榜自己，因为实在是太方便了。",
       createUserId: "C3095D1F789711E998137CD30AEB153E",
       createUserName: "张帆",
       createUserPic: "https://testres.alphalawyer.cn/paralegalInfo/5eff20f7-8bab-4a05-a8a8-f7b47b7474a7",
@@ -61,10 +75,10 @@ Page({
       action: "PASS",
       approveId: "13708",
       approveType: 0,
-        content: "姚俊倩 通过了审批",
+      content: "姚俊倩 通过了审批",
       createUserId: "A325ACCB789711E998137CD30AEB153E",
       createUserName: "姚俊倩",
-        createUserPic: "http://thirdwx.qlogo.cn/mmopen/vi_32/z1DFvtxIn1Ljjicz0iaxCQzTaOwKzc0AoFGXNQTqxvKqBiaRn8vV75xe6e5UnBlrKoRwjWHZL1JfEtzgqkWm3cmrA/132",
+      createUserPic: "http://thirdwx.qlogo.cn/mmopen/vi_32/z1DFvtxIn1Ljjicz0iaxCQzTaOwKzc0AoFGXNQTqxvKqBiaRn8vV75xe6e5UnBlrKoRwjWHZL1JfEtzgqkWm3cmrA/132",
       feedType: 2,
       gmtCreate: 1563538872000,
       gmtModified: 1563538872000,
@@ -96,13 +110,29 @@ Page({
       gmtModified: 1563538816000,
       id: 85557,
       modifyUserId: "A325ACCB789711E998137CD30AEB153E"
-    }],
-  },
+    }];
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
+    var commentList = rawData.map(
+      function (item) {
+        return {
+          action: item.action,
+          approveId: item.approveId,
+          approveType: item.approveType,
+          content: item.content,
+          createUserName: item.createUserName,
+          createUserPic: item.createUserPic,
+          feedType: item.feedType,
+          // 
+          time: time.formatTimeMDHM(new Date(item.gmtCreate))
+        }
+      }
+    );
+
+    console.log(commentList);
+
+    this.setData({
+      comments: commentList
+    });
 
   },
 
