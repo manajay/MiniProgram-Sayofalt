@@ -1,23 +1,22 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
+  <!-- <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
-  </view>
+  </view> -->
 
   <!-- list -->
-    <view wx:for="{{post_list}}">
+    <view wx:for="{{post_list}}" wx:key="id">
       <van-card title="{{item.title}}" desc="{{item.excerpt}}" thumb="{{item.feature_image}}" bind:click="viewItem">
         <text class="post-title">{{item.title}}</text>
         <view>
                 <text class="post-excerpt">{{item.excerpt}}</text>
         </view>
-
         <view slot="footer">
-          <van-button data-id="{{item.id}}" size="small" type="primary" plain bind:click="viewItem">查看详情</van-button>
+          <button type="primary" bind:tap="enterDetail" data-item="{{item}}">查看详情</button>
         </view>
       </van-card>
     </view>

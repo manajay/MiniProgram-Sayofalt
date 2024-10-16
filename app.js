@@ -1,6 +1,9 @@
 //app.js
 App({
   onLaunch: function () {
+    // 初始化云托管服务
+    wx.cloud.init()
+
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())

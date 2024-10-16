@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-var Data = require('../../data.js');
+const api = require('../../service/ApiService').default;
 
 Page({
   data: {
@@ -48,7 +48,9 @@ Page({
   // 获取首页
     this.getPages();
   },
-
+  onReady: function() {
+  },
+  // MARK: Private
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
@@ -60,17 +62,27 @@ Page({
 
   getPages: function() {
     var that = this;
+    api.getLatestBlog().then((posts) => {
+      console.log('posts: ' + posts.length);
+      that.setData({
+        post_list: posts,
+      });
+    }).catch((err) => {
+      console.log('err' + err);
+    });
+  },
 
-    wx.request({
-      url: Data.getGhostHost() + '/ghost/api/v2/content/posts/?key=' + Data.getContentKey(),
-      header: {
-        'content-type': 'application/json' // 默认值
+  enterDetail: function(event) {
+    console.log('enter detail: ', event.currentTarget.dataset.item.title);
+    let item = event.currentTarget.dataset.item;
+    wx.navigateTo({
+      url:'../detail/detail?id=' + item.id + '&html=' + encodeURIComponent(item?.html),
+      events: {
+        // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
       },
-      success(res) {
-        that.setData({
-          post_list: res.data.posts,
-        });
+      fail: function(err) {
+        console.log('enter detail fail: ', err);
       }
     })
-  },
+  }
 })

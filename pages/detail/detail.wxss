@@ -1,0 +1,5 @@
+/* pages/detail.wxss */
+.container {
+  color: black;
+  flex-wrap: wrap;
+}

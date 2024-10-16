@@ -1,12 +1,12 @@
 {
-  "name": "MiniProgram",
+  "name": "wxblog",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "weui-miniprogram": "^0.1.5"
+    "mp-html": "^2.5.0",
+    "weui-miniprogram": "^1.5.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

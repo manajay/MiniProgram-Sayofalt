@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/archives/archive",
     "pages/tags/tag",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

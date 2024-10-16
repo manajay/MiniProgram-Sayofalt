@@ -1,0 +1,10 @@
+<!--pages/detail.wxml-->
+<scroll-view class="container">
+  <mp-html lazy-load
+        scroll-table
+        selectable
+        highlight
+        markdown
+        
+        content="{{html}}" />
+</scroll-view>
