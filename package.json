@@ -4,7 +4,6 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "mp-html": "^2.5.0",
     "weui-miniprogram": "^1.5.1"
   },
   "scripts": {

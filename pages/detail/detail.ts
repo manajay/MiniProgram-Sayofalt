@@ -1,5 +1,7 @@
 // pages/detail.ts
 
+import { GhostHost } from "../../service/const";
+
 Page({
 
   /**
@@ -7,6 +9,7 @@ Page({
    */
   data: {
     html:'',
+    domain: GhostHost
   },
 
   /**

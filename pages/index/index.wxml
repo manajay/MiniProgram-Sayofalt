@@ -9,15 +9,18 @@
   </view> -->
 
   <!-- list -->
-    <view wx:for="{{post_list}}" wx:key="id">
-      <van-card title="{{item.title}}" desc="{{item.excerpt}}" thumb="{{item.feature_image}}" bind:click="viewItem">
-        <text class="post-title">{{item.title}}</text>
-        <view>
-                <text class="post-excerpt">{{item.excerpt}}</text>
+  <view class="post-list-page">
+    <view class="post" wx:for="{{post_list}}" wx:key="id" bind:tap="enterDetail" data-item="{{item}}">
+      <view class="header-view">
+        <cover-image wx:if="{{!!item.feature_image}}" class="cover" src="{{item.feature_image}}" />
+        <view class="post-info">
+          <view class="post-title">{{item.title}}</view>
+          <view class="post-excerpt">{{item.excerpt}}</view>
         </view>
-        <view slot="footer">
-          <button type="primary" bind:tap="enterDetail" data-item="{{item}}">查看详情</button>
-        </view>
-      </van-card>
+      </view>
+      <view class="footer">
+        <view class="seperator" />
+      </view>
     </view>
+  </view>
 </view>

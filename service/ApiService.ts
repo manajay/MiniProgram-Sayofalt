@@ -42,7 +42,7 @@ class ApiWXService implements IApiService {
   getLatestBlog(): Promise<IBlog[]> {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: GhostBaseUrl + '/posts/?key=' + GhostContentKey + '&fields=id,title,url,published_at,feature_image,html&limit=10&page=1',
+        url: GhostBaseUrl + '/posts/?key=' + GhostContentKey + '&fields=id,title,url,published_at,feature_image,html,excerpt&limit=10&page=1',
         header: {
           'content-type': 'application/json' // 默认值
         },
