@@ -1,15 +1,4 @@
 <!--pages/detail.wxml-->
-<!-- <scroll-view class="container"> -->
-  <mp-html lazy-load
-        scroll-table
-        selectable
-        highlight
-        markdown
-        set-title
-        emoji
-        latex
-        card
-        domain="{{domain}}"
-        
-        content="{{html}}" />
-<!-- </scroll-view> -->
+<scroll-view class="container">
+<rich-text nodes="{{html}}" class="content" />
+</scroll-view>

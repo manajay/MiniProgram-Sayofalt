@@ -65,6 +65,9 @@ Page({
     var that = this;
     api.getLatestBlog().then((posts) => {
       console.log('posts: ' + posts.length);
+      posts.forEach((item) => {
+        item.publishedTimeText = item.published_at.slice(0,10);
+      });
       that.setData({
         post_list: posts,
       });

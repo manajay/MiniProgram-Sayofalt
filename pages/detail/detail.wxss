@@ -3,3 +3,8 @@
   color: black;
   flex-wrap: wrap;
 }
+
+.content {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}

@@ -4,6 +4,7 @@ export interface IBlog {
   id: string;
   title: string;
   published_at: string;
+  publishedTimeText?: string;
   feature_image: string;
   excerpt: string;
   url: string;

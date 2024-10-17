@@ -19,6 +19,7 @@
         </view>
       </view>
       <view class="footer">
+        <view class="publishedTimeText">{{item.publishedTimeText + ' 发表'}}</view>
         <view class="seperator" />
       </view>
     </view>
