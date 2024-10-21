@@ -1,0 +1,29 @@
+{
+  "items": [
+    {
+      "pod_version": "1.15.2",
+      "start_time": "2024-10-21T16:41:47.615+08:00",
+      "success": false,
+      "git": {
+        "user_name": "manajay",
+        "user_email": "manajay.dlj@gmail.com",
+        "branch": "master",
+        "commit": "5abfb1e",
+        "remote": "https://github.com/manajay/MiniProgram-Sayofalt.git",
+        "whoami": "duanlianjie"
+      },
+      "upload_time": "2024-10-21T16:41:47.615+08:00",
+      "upload_ts": 1729500107,
+      "ruby_version": "3.0.0",
+      "os_version": "15.0.1",
+      "ip": "172.24.80.150",
+      "cpu": "Apple M2 Pro",
+      "xcode_version": "16.0",
+      "xcode_build_version": "16A242d",
+      "errors": "[!] No `Podfile' found in the project directory.",
+      "name": "pod install error",
+      "task_id": null,
+      "pod_install_id": "bf3ff85457ce39eed958bbd7dda87d39"
+    }
+  ]
+}

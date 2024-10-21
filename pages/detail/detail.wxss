@@ -1,10 +1,9 @@
 /* pages/detail.wxss */
 .container {
   color: black;
-  flex-wrap: wrap;
 }
 
 .content {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
+  margin: 5px;
+  padding: 10px;
 }

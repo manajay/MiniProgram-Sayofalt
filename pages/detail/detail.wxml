@@ -1,4 +1,6 @@
 <!--pages/detail.wxml-->
-<scroll-view class="container">
-<rich-text nodes="{{html}}" class="content" />
-</scroll-view>
+<view class="container">
+  <view class="content">
+    <mp-html content="{{html}}" />
+  </view>
+</view>
