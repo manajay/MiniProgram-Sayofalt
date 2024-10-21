@@ -79,8 +79,15 @@ Page({
   enterDetail: function(event) {
     console.log('enter detail: ', event.currentTarget.dataset.item.title);
     let item = event.currentTarget.dataset.item;
+    var url = '../detail/detail?id=' + item.id;
+    if (item?.html) {
+      url += '&html=' + encodeURIComponent(item?.html)
+    }
+    if (item?.feature_image) {
+      url += '&feature_image=' + item.feature_image ?? ''
+    }
     wx.navigateTo({
-      url:'../detail/detail?id=' + item.id + '&html=' + encodeURIComponent(item?.html),
+      url: url,
       events: {
         // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
       },

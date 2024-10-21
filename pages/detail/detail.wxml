@@ -1,6 +1,7 @@
 <!--pages/detail.wxml-->
 <view class="container">
   <view class="content">
+    <cover-image wx:if="{{!!feature_image && feature_image.length > 0}}" class="cover" src="{{feature_image}}" />
     <mp-html content="{{html}}" />
   </view>
 </view>

@@ -75,7 +75,7 @@ class ApiWXService implements IApiService {
   getTags(): Promise<ITag[]> {
     return new Promise((resolve, reject) => {
       wx.request({
-        url: GhostBaseUrl + '/tags/?key=' + GhostContentKey + '&order=name asc',
+        url: GhostBaseUrl + '/tags/?key=' + GhostContentKey + '&order=name asc' + '&fields=visibility:public&include=count.posts',
         header: {
           'content-type': 'application/json' // 默认值
         },
