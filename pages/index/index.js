@@ -2,6 +2,8 @@
 //获取应用实例
 const app = getApp()
 const api = require('../../service/ApiService').default;
+const FakeTagAll = require('../../service/ApiService').FakeTagAll;
+const PAGE_FIRST = 1;
 
 Page({
   data: {
@@ -9,7 +11,13 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    tag_list:[],
+    latestTag: null,
     post_list:[],
+    page: 1,
+    loadingMore: false,
+    hasMore: false,
+    hasReachFinalPost: false,
   },
   //事件处理函数
   bindViewTap: function() {
@@ -46,11 +54,50 @@ Page({
       })
     }
 
-  // 获取首页
-    this.getPages();
+    // 获取首页
+    this.prepareFirstPage();
   },
-  onReady: function() {
-  },
+
+    /** 下拉刷新 */
+    onPullDownRefresh: function() {
+      console.log('onPullDownRefresh');
+      var that = this;
+      var page = PAGE_FIRST;
+      this.getPages(page, () => {
+        that.setData({
+          page: page,
+        });
+      }, null, () => {
+        wx.stopPullDownRefresh()
+      });
+    },
+
+    onReachBottom: function() {
+      console.log('onReachBottom:', this.data.hasMore);
+      if (!this.data.hasMore) {
+        return
+      }
+      var that = this;
+      this.setData({
+        loadingMore: true
+      });
+      var next = this.data.page + 1;
+      this.getPages(next, () => {
+        that.setData({
+          page: next
+        });
+      }, null, () => {
+        that.setData({
+          loadingMore: false
+        });
+      });
+    },
+
+    prepareFirstPage: function() {
+      this.onPullDownRefresh();
+      this.getTags();
+    },
+
   // MARK: Private
   getUserInfo: function(e) {
     console.log(e)
@@ -61,23 +108,74 @@ Page({
     })
   },
 
-  getPages: function() {
+  getPages: function(page, success, fail, complete) {
+    wx.showLoading({
+      title: '加载中',
+    })
     var that = this;
-    api.getLatestBlog().then((posts) => {
-      console.log('posts: ' + posts.length);
-      posts.forEach((item) => {
-        item.publishedTimeText = item.published_at.slice(0,10);
-      });
-      that.setData({
-        post_list: posts,
-      });
+    var tags = undefined;
+    if (!!this.data.latestTag && this.data.latestTag.name !== '全部') {
+      tags = this.data.latestTag.name;
+    }
+    api.getLatestBlog(page, tags).then((res) => {
+      that.hanleData(page, res);
+      wx.hideLoading()
+      success?.();
+      complete?.();
     }).catch((err) => {
       console.log('err' + err);
+      wx.hideLoading()
+      fail?.(err);
+      complete?.();
+    });
+  },
+
+  getTags: function(page, success, fail, complete) {
+    var that = this;
+    api.getTags().then((res) => {
+      console.log('tag_list: ', res.data.length);
+      that.setData({
+        tag_list: [FakeTagAll].concat(res.data),
+        latestTag: FakeTagAll
+      });
+      success?.();
+      complete?.();
+    }).catch((err) => {
+      console.log('err' + err);
+      fail?.(err);
+      complete?.();
+    });
+  },
+
+  hanleData: function (page, res) {
+    var posts = res.data;
+    posts.forEach((item) => {
+      item.publishedTimeText = item.published_at.slice(0,10);
+    });
+    let pages = res.meta.pagination.pages;
+    let hasMore = page < pages;
+    let hasReachFinalPost = page === 1 ? false : !hasMore; // 首页强制不展示
+    console.log(`[page]: ${page}, [pages]: ${pages} [posts]: ${ posts.length}, [hasMore]: ${hasMore}`);
+    let curPostList = page === 1 ? posts : this.data.post_list.concat(posts);
+    this.setData({
+      post_list: curPostList,
+      hasMore: hasMore,
+      hasReachFinalPost: hasReachFinalPost,
+    });
+  },
+
+  changeTabs: function(event) {
+    console.log('changeTabs: ', event.detail);
+    var latestTag = FakeTagAll;
+    if (!!event.detail.currentIndex && !!this.data.tag_list && event.detail.currentIndex < this.data.tag_list) {
+      latestTag = this.data.tag_list[event.default.currentIndex]
+    }
+    this.setData({
+      latestTag: latestTag
     });
   },
 
   enterDetail: function(event) {
-    console.log('enter detail: ', event.currentTarget.dataset.item.title);
     let item = event.currentTarget.dataset.item;
     var url = '../detail/detail?id=' + item.id;
     if (item?.html) {
@@ -85,6 +183,9 @@ Page({
     }
     if (item?.feature_image) {
       url += '&feature_image=' + item.feature_image ?? ''
+    }
+    if (item?.title) {
+      url += '&title=' + item.title;
     }
     wx.navigateTo({
       url: url,

@@ -1,6 +1,15 @@
 /* pages/detail.wxss */
 .container {
   color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 20;
+  font-weight: 600;
+  text-align: center;
+  color: rgb(43, 92, 92);
 }
 
 .content {

@@ -33,5 +33,7 @@
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
-  }
+  },
+  "ignoreDevUnusedFiles": false,
+  "ignoreUploadUnusedFiles": false
 }

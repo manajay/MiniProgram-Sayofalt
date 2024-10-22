@@ -1,2 +1,9 @@
 {
+  "usingComponents": {
+    "post-item": "../../components/post-item/post-item",
+    "l-loadmore" : "../../miniprogram_npm/lin-ui/loadmore/index",
+    "l-segment": "../../miniprogram_npm/lin-ui/segment/index",
+    "l-segment-item": "../../miniprogram_npm/lin-ui/segment-item/index"
+  },
+  "enablePullDownRefresh": true
 }

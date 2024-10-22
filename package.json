@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "lin-ui": "^0.9.13",
     "weui-miniprogram": "^1.5.1"
   },
   "scripts": {

@@ -8,20 +8,34 @@
     </block>
   </view> -->
 
+  <view class="header">
+    <l-segment bind:linchange="changeTabs" has-line scrollable 
+    l-active-class="tab-active"
+    l-header-class="su-tab-header"
+    >
+        <l-segment-item
+        has-line
+         wx:for="{{tag_list}}" 
+         wx:key="index"
+         key="{{item.id}}"
+         slot="{{item.id}}"
+         width="auto"
+         data-cell="{{item.slug}}"
+         animated-for-line
+         >
+          <view class="tab-item">
+            <view>{{item.name}}</view>
+          </view>
+        </l-segment-item>
+    </l-segment>
+  </view>
+
   <!-- list -->
   <view class="post-list-page">
     <view class="post" wx:for="{{post_list}}" wx:key="id" bind:tap="enterDetail" data-item="{{item}}">
-      <view class="header-view">
-        <cover-image wx:if="{{!!item.feature_image}}" class="cover" src="{{item.feature_image}}" />
-        <view class="post-info">
-          <view class="post-title">{{item.title}}</view>
-          <view class="post-excerpt">{{item.excerpt}}</view>
-        </view>
-      </view>
-      <view class="footer">
-        <view class="reading_time_text">{{'阅读时长：' + item.reading_time + '分钟'}}</view>
-        <view class="publishedTimeText">{{item.publishedTimeText + ' 发表'}}</view>
-      </view>
+      <post-item item="{{item}}" />
     </view>
+    <l-loadmore show="{{loadingMore}}"></l-loadmore>
+    <view wx:if="{{hasReachFinalPost}}">已经到最后一条了</view>
   </view>
 </view>

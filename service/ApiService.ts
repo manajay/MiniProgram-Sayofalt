@@ -1,4 +1,23 @@
+import { genLspMeta } from "XrFrame/genLspMeta";
 import { WXCloudServiceEnvID, WXServiceName ,GhostBaseUrl, GhostContentKey } from "./const";
+
+export interface IMeta {
+  pagination: IPagination
+}
+
+export interface IPagination {
+  page: number;
+  limit: number;
+  pages: number;
+  total: number;
+  next: number;
+  prev: number;
+}
+
+export interface IPageRes<T> {
+  meta: IMeta;
+  data: T;
+}
 
 export interface IBlog {
   id: string;
@@ -22,15 +41,24 @@ export interface ITag {
   visibility: string; // public
 }
 
+export const FakeTagAll = {
+  id: 'thisisafaketag-all',
+  name: '全部',
+  description: '',
+  slug: '全部',
+  url:'',
+}
+
+
 export interface IApiService {
-   getLatestBlog():Promise<IBlog[]>;
-   getTags():Promise<ITag[]>;
+   getLatestBlog(page?: number):Promise<IPageRes<IBlog[]>>;
+   getTags():Promise<IPageRes<ITag[]>>;
 }
 
 class ApiService implements IApiService {
   constructor() {
   }
-  getLatestBlog(): Promise<IBlog[]> {
+  getLatestBlog(page?: number): Promise<IPageRes<IBlog[]>> {
     return new Promise((resolve, reject) => {
       // const res = wx.cloud.callContainer({
       //   config: {
@@ -48,7 +76,7 @@ class ApiService implements IApiService {
     });
   }
 
-  getTags(): Promise<ITag[]> {
+  getTags(): Promise<IPageRes<ITag[]>> {
     return new Promise((resolve, reject) => {
       reject();
     });
@@ -58,30 +86,57 @@ class ApiService implements IApiService {
 class ApiWXService implements IApiService {
   constructor() {
   }
-  getLatestBlog(): Promise<IBlog[]> {
+  getLatestBlog(page?: number, tags?: string): Promise<IPageRes<IBlog[]>> {
     return new Promise((resolve, reject) => {
+      let url = GhostBaseUrl + '/posts/?key=' + GhostContentKey
+      url += '&fields=id,title,url,published_at,feature_image,html,excerpt,reading_time';
+      url += '&limit=10&page=' + page ?? '1';
+      if (!!tags && tags.length > 0) {
+        url += '&filter=tag:' + tags;
+      }
       wx.request({
-        url: GhostBaseUrl + '/posts/?key=' + GhostContentKey + '&fields=id,title,url,published_at,feature_image,html,excerpt,reading_time&limit=10&page=1',
+        url: url,
         header: {
           'content-type': 'application/json' // 默认值
         },
         success(res) {
-          const data = res?.data as { posts };
-          resolve(data?.posts);
-        }
+          // console.log(res);
+          const data = res?.data as { meta, posts}
+          resolve({
+            meta: data.meta,
+            data: data.posts
+          });
+        },
+        fail(err: { errMsg: string, errno: number}){
+          reject(err)
+          console.error(err);
+        },
       })
     });
   }
-  getTags(): Promise<ITag[]> {
+
+  getTags(): Promise<IPageRes<ITag[]>> {
     return new Promise((resolve, reject) => {
+      let url = GhostBaseUrl + '/tags/?key=' + GhostContentKey;
+      url += '&order=name asc';
+      url += '&include=count.posts';
+
       wx.request({
-        url: GhostBaseUrl + '/tags/?key=' + GhostContentKey + '&order=name asc' + '&fields=visibility:public&include=count.posts',
+        url: url,
         header: {
           'content-type': 'application/json' // 默认值
         },
         success(res) {
-          const data = res?.data as { tags };
-          resolve(data?.tags);
+          const data = res?.data as { meta, tags}
+          // console.log(JSON.stringify(data.tags));
+          resolve({
+            meta: data.meta,
+            data: data.tags
+          });
+        },
+        fail(err) {
+          reject(err);
+          console.error(err);
         }
       })
     });

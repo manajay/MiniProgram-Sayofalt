@@ -10,6 +10,7 @@ Page({
   data: {
     html:'',
     feature_image: undefined,
+    title: undefined,
     domain: GhostHost
   },
 
@@ -18,10 +19,13 @@ Page({
    */
   onLoad(options) {
     let html = decodeURIComponent(options?.html ?? '');
-    let feature_image = options.feature_image ?? ''
+    let feature_image = options?.feature_image ?? ''
+    let title = options?.title ?? '';
+    console.log('enter detail: ', title);
     this.setData({
-      html: html,
-      feature_image: feature_image,
+      html,
+      feature_image,
+      title
     })
   },
 
