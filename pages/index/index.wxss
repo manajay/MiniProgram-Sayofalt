@@ -21,17 +21,17 @@
 }
 
 .header {
-  height: auto;
+  height: 30px;
+  width: 100%;
+  position:fixed;
+  top: 0px;
 }
 
-.tab-item{
-  /* border-style:solid;
-  border-radius: 5px;
-  border-color: coral;
-  border-width: 2px; */
+.tab-item {
   font-size: 30rpx;
   padding: 5px;
 }
+
 .su-tab-header{
   background-color: white;
 }
@@ -41,6 +41,7 @@
 
 .post-list-page {
   background-color: ghostwhite;
+  margin-top: 40px;
 }
 
 .post {

@@ -5,7 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    list_data: [
+      {
+        title: '关于我们',
+        desc: '',
+        icon: 'user'
+      },
+      {
+        title: '问题反馈',
+        desc: '',
+        icon: 'help'
+      },
+    ]
   },
 
   /**

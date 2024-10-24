@@ -1,5 +1,4 @@
-import { genLspMeta } from "XrFrame/genLspMeta";
-import { WXCloudServiceEnvID, WXServiceName ,GhostBaseUrl, GhostContentKey } from "./const";
+import { GhostBaseUrl, GhostContentKey } from "./const";
 
 export interface IMeta {
   pagination: IPagination
@@ -55,34 +54,6 @@ export interface IApiService {
    getTags():Promise<IPageRes<ITag[]>>;
 }
 
-class ApiService implements IApiService {
-  constructor() {
-  }
-  getLatestBlog(page?: number): Promise<IPageRes<IBlog[]>> {
-    return new Promise((resolve, reject) => {
-      // const res = wx.cloud.callContainer({
-      //   config: {
-      //     env: WXCloudServiceEnvID,
-      //   },
-      //   path: '/api/blog/latest',
-      //   method: 'GET',
-      //   data: "",
-      //   header: {
-      //     'X-WX-SERVICE': WXServiceName,
-      //     "content-type": "application/json"
-      //   }
-      // });
-      reject();
-    });
-  }
-
-  getTags(): Promise<IPageRes<ITag[]>> {
-    return new Promise((resolve, reject) => {
-      reject();
-    });
-  }
-}
-
 class ApiWXService implements IApiService {
   constructor() {
   }
@@ -118,7 +89,7 @@ class ApiWXService implements IApiService {
   getTags(): Promise<IPageRes<ITag[]>> {
     return new Promise((resolve, reject) => {
       let url = GhostBaseUrl + '/tags/?key=' + GhostContentKey;
-      url += '&order=name asc';
+      // url += '&order=name asc';
       url += '&include=count.posts';
 
       wx.request({
@@ -128,6 +99,9 @@ class ApiWXService implements IApiService {
         },
         success(res) {
           const data = res?.data as { meta, tags}
+          data.tags.sort(function(a, b) {
+            return b.count.posts - a.count.posts;
+          });
           // console.log(JSON.stringify(data.tags));
           resolve({
             meta: data.meta,

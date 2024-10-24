@@ -35,7 +35,6 @@
     <view class="post" wx:for="{{post_list}}" wx:key="id" bind:tap="enterDetail" data-item="{{item}}">
       <post-item item="{{item}}" />
     </view>
-    <l-loadmore show="{{loadingMore}}"></l-loadmore>
-    <view wx:if="{{hasReachFinalPost}}">已经到最后一条了</view>
+    <l-loadmore show="{{loadingMore || hasReachFinalPost}}" type="{{hasReachFinalPost ? 'end' : 'loading'}}" loading-text="努力加载中~" />
   </view>
 </view>

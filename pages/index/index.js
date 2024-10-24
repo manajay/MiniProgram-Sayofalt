@@ -115,8 +115,9 @@ Page({
     var that = this;
     var tags = undefined;
     if (!!this.data.latestTag && this.data.latestTag.name !== '全部') {
-      tags = this.data.latestTag.name;
+      tags = this.data.latestTag.slug;
     }
+    console.log(`getLatestBlog tags: ${tags}, page: ${page}`);
     api.getLatestBlog(page, tags).then((res) => {
       that.hanleData(page, res);
       wx.hideLoading()
@@ -131,6 +132,9 @@ Page({
   },
 
   getTags: function(page, success, fail, complete) {
+    if(this.data.tag_list && this.data.tag_list.length > 0) {
+      return;
+    }
     var that = this;
     api.getTags().then((res) => {
       console.log('tag_list: ', res.data.length);
@@ -165,14 +169,13 @@ Page({
   },
 
   changeTabs: function(event) {
-    console.log('changeTabs: ', event.detail);
-    var latestTag = FakeTagAll;
-    if (!!event.detail.currentIndex && !!this.data.tag_list && event.detail.currentIndex < this.data.tag_list) {
-      latestTag = this.data.tag_list[event.default.currentIndex]
-    }
+    let index = event?.detail?.currentIndex ?? 0;
+    let latestTag = index < this.data.tag_list.length ? this.data.tag_list[index] : FakeTagAll;
+    console.log('changeTabs: ', index, latestTag?.name);
     this.setData({
       latestTag: latestTag
     });
+    this.prepareFirstPage();
   },
 
   enterDetail: function(event) {
